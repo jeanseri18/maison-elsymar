@@ -3,23 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Maison Elsymar</title>
-  <meta name="description" content="Facebook et Instagram de Maison Elsymar, en un seul lien.">
-  <meta property="og:title" content="Maison Elsymar">
-  <meta property="og:description" content="Retrouvez Maison Elsymar sur Facebook et Instagram.">
+  <title>Elsymar</title>
+  <meta name="description" content="Facebook et Instagram d’Elsymar, luxury beverage élaboré en Côte d’Ivoire.">
+  <meta name="theme-color" content="#14090c">
+  <meta property="og:title" content="Elsymar — Luxury beverage">
+  <meta property="og:description" content="Retrouvez Elsymar sur Facebook et Instagram.">
   <meta property="og:type" content="website">
+  <link rel="icon" href="logo.png">
+  <link rel="preload" as="image" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #1a1612;
-      --muted: #6d645b;
-      --paper: #f4efe8;
-      --card: #fffcf8;
-      --line: #e4dcd2;
-      --fb: #1877f2;
-      --ig: #c13584;
+      --bg: #14090c;
+      --burgundy: #4a1020;
+      --gold: #d4b06a;
+      --gold-bright: #f3e0a8;
+      --gold-deep: #8d6a32;
+      --cream: #f6edd8;
+      --muted: #cbb892;
+      --line: rgba(212, 176, 106, 0.42);
     }
 
     * { box-sizing: border-box; }
@@ -29,12 +33,64 @@
       min-height: 100vh;
       display: grid;
       place-items: center;
-      padding: 32px 20px;
+      padding: 28px 20px 40px;
+      color: var(--cream);
+      font-family: "Cormorant Garamond", Georgia, serif;
       background:
-        radial-gradient(ellipse at top, #fff 0%, transparent 55%),
-        var(--paper);
-      color: var(--ink);
-      font-family: Outfit, sans-serif;
+        radial-gradient(ellipse at 50% 18%, rgba(122, 28, 46, 0.55), transparent 42%),
+        linear-gradient(180deg, #12080a 0%, #2a0c14 48%, #4a1020 100%);
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(ellipse at 50% 42%, #5a1424 0%, #2a0c14 46%, #10080a 100%);
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+
+    .loader.is-done {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .seal {
+      position: relative;
+      width: min(280px, 68vw);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .seal::before {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 1.5px solid transparent;
+      border-top-color: var(--gold-bright);
+      border-right-color: rgba(212, 176, 106, 0.45);
+      animation: spin 1.15s linear infinite;
+    }
+
+    .seal img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      animation: rise 0.9s ease both;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     main {
@@ -42,41 +98,46 @@
       text-align: center;
     }
 
+    .brand {
+      width: 148px;
+      height: 148px;
+      object-fit: contain;
+      margin: 0 auto 8px;
+      display: block;
+    }
+
     p.eyebrow {
-      margin: 0 0 14px;
-      letter-spacing: 0.28em;
+      margin: 0 0 8px;
+      font-family: Cinzel, serif;
+      letter-spacing: 0.34em;
       text-transform: uppercase;
       font-size: 11px;
-      color: var(--muted);
+      color: var(--gold);
     }
 
     h1 {
       margin: 0;
-      font-family: "Cormorant Garamond", Georgia, serif;
+      font-family: Cinzel, serif;
       font-weight: 500;
-      font-size: clamp(46px, 12vw, 64px);
-      line-height: 0.9;
-      letter-spacing: -0.03em;
-    }
-
-    h1 span {
-      display: block;
-      font-style: italic;
-      font-weight: 500;
+      font-size: clamp(40px, 11vw, 56px);
+      letter-spacing: 0.18em;
+      line-height: 1;
+      color: var(--gold-bright);
     }
 
     .rule {
-      width: 48px;
+      width: 56px;
       height: 1px;
-      margin: 22px auto 18px;
-      background: var(--ink);
+      margin: 18px auto 14px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
     }
 
     .lead {
       margin: 0 0 28px;
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.5;
+      font-size: 20px;
+      font-style: italic;
+      letter-spacing: 0.02em;
     }
 
     .links {
@@ -88,37 +149,32 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      padding: 16px 18px;
+      padding: 15px 18px;
       text-decoration: none;
-      color: var(--ink);
-      background: var(--card);
+      color: var(--cream);
+      background: rgba(10, 5, 7, 0.45);
       border: 1px solid var(--line);
       border-radius: 16px;
-      transition: transform 0.15s ease, border-color 0.15s ease;
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
     }
 
     a.network:hover,
     a.network:focus-visible {
       transform: translateY(-1px);
-      border-color: #c9bfb4;
+      border-color: var(--gold);
+      background: rgba(10, 5, 7, 0.7);
       outline: none;
     }
 
     .mark {
       width: 44px;
       height: 44px;
-      border-radius: 12px;
+      border-radius: 50%;
       display: grid;
       place-items: center;
       flex: none;
-      color: white;
-    }
-
-    .mark.fb { background: var(--fb); }
-    .mark.ig {
-      background: radial-gradient(circle at 30% 110%, #fccc63, transparent 42%),
-                  radial-gradient(circle at 110% 10%, #7c3aed, transparent 40%),
-                  linear-gradient(135deg, #f77737, #c13584 55%, #405de6);
+      color: #1a0c0e;
+      background: linear-gradient(160deg, var(--gold-bright), var(--gold) 45%, var(--gold-deep));
     }
 
     .copy {
@@ -128,41 +184,60 @@
 
     .copy strong {
       display: block;
-      font-size: 16px;
+      font-family: Cinzel, serif;
+      font-size: 15px;
       font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .copy small {
       display: block;
       margin-top: 2px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 16px;
+      font-style: italic;
     }
 
     .arrow {
       margin-left: auto;
-      color: #b3a89d;
+      color: var(--gold);
       font-size: 20px;
     }
 
     footer {
       margin-top: 28px;
-      color: #9a9086;
-      font-size: 12px;
-      letter-spacing: 0.04em;
+      font-family: Cinzel, serif;
+      color: var(--gold-deep);
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .loader { display: none; }
+      .seal img, .seal::before { animation: none; }
+      a.network { transition: none; }
     }
   </style>
 </head>
 <body>
+  <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Chargement d’Elsymar">
+    <div class="seal">
+      <img src="logo.png" alt="Elsymar, luxury beverage, élaboré en Côte d’Ivoire">
+    </div>
+  </div>
+
   <main>
-    <p class="eyebrow">Réseaux</p>
-    <h1>Maison <span>Elsymar</span></h1>
+    <img class="brand" src="logo.png" alt="">
+    <p class="eyebrow">Luxury beverage</p>
+    <h1>Elsymar</h1>
     <div class="rule"></div>
-    <p class="lead">Un seul lien pour nous suivre sur Facebook et Instagram.</p>
+    <p class="lead">Élaboré en Côte d’Ivoire</p>
     <nav class="links" aria-label="Réseaux sociaux">
       <a class="network" href="https://www.facebook.com/MaisonElsymar">
-        <span class="mark fb" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <span class="mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M14.5 8.5V6.8c0-.7.5-1 1.2-1H17V3h-2.1C12.2 3 11 4.4 11 6.6v1.9H9v2.7h2V21h3.5v-9.8h2.3l.4-2.7h-2.7z"/>
           </svg>
         </span>
@@ -173,8 +248,8 @@
         <span class="arrow" aria-hidden="true">→</span>
       </a>
       <a class="network" href="https://www.instagram.com/maison_elsymar/">
-        <span class="mark ig" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <span class="mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <rect x="4" y="4" width="16" height="16" rx="5"/>
             <circle cx="12" cy="12" r="3.6"/>
             <circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/>
@@ -187,7 +262,24 @@
         <span class="arrow" aria-hidden="true">→</span>
       </a>
     </nav>
-    <footer>Maison Elsymar</footer>
+    <footer>CIV 225</footer>
   </main>
+
+  <script>
+    (function () {
+      var loader = document.getElementById("loader");
+      if (!loader) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        loader.remove();
+        return;
+      }
+      window.addEventListener("load", function () {
+        window.setTimeout(function () {
+          loader.classList.add("is-done");
+          loader.setAttribute("aria-hidden", "true");
+        }, 1700);
+      });
+    })();
+  </script>
 </body>
 </html>
